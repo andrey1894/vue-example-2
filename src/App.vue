@@ -1,18 +1,43 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <AppHeader />
+  <div class="app-wrapper">
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </div>
+    <router-view />
   </div>
-  <router-view />
+  <AppFooter />
 </template>
 
+<script lang="ts">
+import { defineComponent } from 'vue'
+import AppHeader from '@/components/AppHeader.vue'
+import AppFooter from '@/components/AppFooter.vue'
+
+export default defineComponent({
+  name: 'App',
+
+  components: {
+    AppHeader,
+    AppFooter,
+  },
+})
+</script>
+
 <style lang="scss">
+@import '@/styles';
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   text-align: center;
   color: #2c3e50;
+
+  .app-wrapper {
+    flex: 1;
+  }
 }
 
 #nav {
@@ -23,7 +48,7 @@
     color: #2c3e50;
 
     &.router-link-exact-active {
-      color: #42b983;
+      color: var(--bs-success);
     }
   }
 }
